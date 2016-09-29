@@ -15,12 +15,12 @@ gulp.task('watch', function(){
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('./src/scripts/app/main.js')
+    return gulp.src('src/scripts/app/main.js')
         .pipe(sourcemaps.init())
         .pipe(browserify())
-        .pipe(babel({ 
-            presets: ['es2015'] 
-        }))
+        // .pipe(babel({ 
+        //     presets: ['es2015'] 
+        // }))
         .pipe(uglify())
         .pipe(rename('bundle.js'))
         .pipe(sourcemaps.write())
