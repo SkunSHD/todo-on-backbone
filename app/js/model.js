@@ -5,6 +5,7 @@ module.exports = function() {
     // }
     // return sum;
 
-    return arguments[0] + arguments[1];
-
+    var privat = 'secret',
+    sum = arguments[0] + arguments[1];
+    return sum;
 };
