@@ -71,7 +71,7 @@ gulp.task('compile:watch:js', function () {
     var bundler = watchify(browserify({
         cache: {},
         packageCache: {},
-        entries: [path.join(__dirname, './app/js/components/debug/debug.js'), path.join(__dirname, './app/js/app.js')],
+        entries: [path.join(__dirname, './app/js/app.js')],
         paths: ['./app/js'],
         noparse: [
             './node_modules/jquery/dist/jquery.min.js',
@@ -80,18 +80,11 @@ gulp.task('compile:watch:js', function () {
             './node_modules/underscore/underscore.js'
         ],
         transform: ['hbsfy'],
-        fast: true,
-        debug: true
+        fast: true
     }).transform('babelify', { presets: ['es2015'], sourceMaps: false }));
-
-    function errorHandler(e) {
-        console.log('Shit had happened');
-        console.log(e);
-    }
 
     function rebundle() {
         return bundler.bundle()
-            .on('error', errorHandler)
             .pipe(source('bundle.js'))
             .pipe(buffer())
             .pipe(sourcemaps.init({loadMaps: true}))
