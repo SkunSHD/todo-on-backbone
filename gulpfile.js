@@ -41,6 +41,7 @@ var buffer      = require('vinyl-buffer');
 var handlebars  = require('gulp-compile-handlebars');
 var rename      = require('gulp-rename');
 var fs          = require('fs');
+var gutil       = require('gulp-util');
 // var rev         = require('gulp-rev');
 // var del         = require('del');
 // var addsrc      = require('gulp-add-src');
@@ -59,7 +60,7 @@ var fs          = require('fs');
 
 // var Server      = require('karma').Server;
 // var browserSync = require('browser-sync').create();
-var gutil       = require('gulp-util');
+
 
 // var injectStr   = require('gulp-inject-string');
 
@@ -89,7 +90,7 @@ gulp.task('compile:watch:js', function () {
             .pipe(buffer())
             .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(prod ? streamify(uglify()) : gutil.noop())
-            .pipe(sourcemaps.write()) //sourcemaps will be added to the bundle.js
+            .pipe(sourcemaps.write()) // sourcemaps will be added to the bundle.js
             .pipe(gulp.dest('./public/js/'));
     }
 
